@@ -34,4 +34,3 @@ Este projeto é uma **API RESTful** construída com **NestJS**, utilizando **Pos
 ## 👩‍💻 Autora
 
 Projeto desenvolvido por **Laura Ferreira de Almeida** ✨
-
