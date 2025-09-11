@@ -2,21 +2,38 @@ import { IsEmail, IsNotEmpty, MinLength, MaxLength, Matches } from 'class-valida
 
 
 export class CreateUserDto {
-  @IsEmail()
-  @IsNotEmpty()
+
+  @IsEmail({},{
+    message: 'Informe um endereço de email válido'
+  })
+  @IsNotEmpty({
+    message: 'Informe um endereço de email'
+  })
   email: string;
 
-  @IsNotEmpty()
-  @MaxLength(100)
+  @IsNotEmpty({
+    message: 'Informe o nome do usuário',
+  })
+  @MaxLength(100, {
+    message: 'O nome deve ter menos de 200 caracteres',
+  })
   name: string;
 
-  @IsNotEmpty()
-  @MinLength(8)
-  @MaxLength(32)
+  @IsNotEmpty({
+    message: 'Informe uma senha',
+  })
+  @MinLength(8,{
+    message: 'A senha deve ter no mínimo 8 caracteres',
+  })
+  @MaxLength(32,{
+    message: 'A senha deve ter no máximo 32 caracteres',
+  })
   @Matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+$/)
   password: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({
+    message: 'Informe a confirmação de senha',
+  })
   passwordConfirmation: string;
 }
 
