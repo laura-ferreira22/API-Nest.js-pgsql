@@ -14,6 +14,8 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
   ) {}
 
+  
+
   // Criação de usuário ADMIN
   async createAdminUser(createUserDto: CreateUserDto): Promise<User> {
     if (createUserDto.password !== createUserDto.passwordConfirmation) {
@@ -24,7 +26,7 @@ export class UsersService {
   }
 
   // Método genérico de criação de usuário
-  private async createUser(createUserDto: CreateUserDto, role: UserRole): Promise<User> {
+  public async createUser(createUserDto: CreateUserDto, role: UserRole): Promise<User> {
     const { email, name, password } = createUserDto;
 
     const user = this.userRepository.create({
