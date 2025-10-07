@@ -3,10 +3,10 @@ version: '3'
 services:
   pgsql:
     image: postgres:alpine
+    container_name: pgsql
+    restart: always
     ports:
       - '5432:5432'
-    container_name: 'pgsql'
-    restart: always
     volumes:
       - pg-data:/var/lib/postgresql/data
     environment:
@@ -16,9 +16,10 @@ services:
 
   adminer:
     image: adminer
+    container_name: adminer
     restart: always
     ports:
-      - 8080:8080
+      - '8080:8080'
 
   nestjs:
     build: .
@@ -30,11 +31,11 @@ services:
       - NODE_ENV=development
       - DB_HOST=pgsql
     ports:
-      - 3000:3000
+      - '3000:3000'
     volumes:
-      - .:/usr/src/app
-       - .:/usr/src/app/node_modules
-    command: npm run start:dev
+      - .:/usr/src/app                 #  monta o código local dentro do container
+      - /usr/src/app/node_modules      # impede sobrescrever o node_modules do container
+    command: npm run start:dev         # modo watch do NestJS
 
 volumes:
   pg-data:
