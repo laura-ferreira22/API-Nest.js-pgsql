@@ -28,7 +28,8 @@ export class CreateUserDto {
   @MaxLength(32,{
     message: 'A senha deve ter no máximo 32 caracteres',
   })
-  @Matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+$/)
+  @Matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+$/, { 
+    message: 'A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial'} )
   password: string;
 
   @IsNotEmpty({
